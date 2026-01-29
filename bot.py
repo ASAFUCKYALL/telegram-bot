@@ -1,7 +1,8 @@
 from telegram import Update
 from telegram.ext import Application, ChatJoinRequestHandler, ContextTypes
+import os
 
-TOKEN = "8507624503:AAGcpEuqwpSqNW7JJTdTKz8WCTWiiInAY-c"
+TOKEN = os.environ.get("8507624503:AAGcpEuqwpSqNW7JJTdTKz8WCTWiiInAY-c")
 
 async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.chat_join_request.approve()
@@ -9,5 +10,5 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
 app = Application.builder().token(TOKEN).build()
 app.add_handler(ChatJoinRequestHandler(approve))
 
-print("Bot actif")
+print("Bot actif (GitHub Actions)")
 app.run_polling()
